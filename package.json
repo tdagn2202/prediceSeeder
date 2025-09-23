@@ -22,5 +22,10 @@
   },
   "bin": {
     "predicedbseeder": "./seed.js"
-  }
+  },
+  "files": [
+    "seed.js",
+    "seed-data.sql",
+    "schema.sql"
+  ]
 }
