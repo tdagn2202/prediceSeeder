@@ -32,6 +32,6 @@ npx predicedbseeder
 
 The package will ask you for **host name, database name, user name and password**.
 
-![Example image](./assets/image.png)
+![Example image](https://res.cloudinary.com/dndkucyhf/image/upload/v1758597848/image_sodnr4.png)
 
 Please provide it carefully.
