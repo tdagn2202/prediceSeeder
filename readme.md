@@ -16,16 +16,22 @@ This tool helps developers quickly populate their local database with **dummy da
 
 ## 📥 Installation
 
-Install globally (recommended for CLI use):
+You may wabt to create your MySQL database first, name it whatever you want (eg. `predice`, `predice_db`, etc.)
+
+Install the seeder package:
 
 ```bash
-npm install -g predicedbseeder
+npm install predicedbseeder
 ```
 
-You may need to create your MySQL database first, name it whatever you want (eg. `predice`, `predice_db`, etc.)
+Then run the start command:
+
+```bash
+npx predicedbseeder
+```
 
 The package will ask you for **host name, database name, user name and password**.
 
-![Example image](image.png)
+![Example image](./assets/image.png)
 
 Please provide it carefully.
