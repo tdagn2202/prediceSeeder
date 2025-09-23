@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import fs from "fs";
 import mysql from "mysql2/promise";
 import readline from "readline";
