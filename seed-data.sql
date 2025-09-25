@@ -5,23 +5,24 @@ INSERT INTO role (role_title, role_desc) VALUES
   ('Farmer', 'Registered farmer');
 
 -- Users
-INSERT INTO users (user_name, email, address, season_count, phone_number, status, role_id) VALUES
-  ('Trần Hải Đăng', 'contact@tdang2202.id.vn', 'Ấp Hòa Sơn, Xã Hòa An, Cần Thơ', 2, '123456789', 'active', 1),
-  ('Nguyễn Thanh Ngân', 'nganb2203569@student.ctu.edu.vn', 'Trà Ôn, Vĩnh Long', 5, '987654321', 'active', 2),
-  ('Nguyễn Thị Anh Thư', 'thub2203xxx@student.ctu.edu.vn', 'An Giang', 0, '555888111', 'inactive', 2),
-  ('Trương Minh Mẫn', 'quocb22035xx@student.ctu.edu.vn', 'Unknown', 0, '555888111', 'inactive', 3),
-  ('Trần Nguyễn Khánh Quốc', 'manb22035xx@student.ctu.edu.vn', 'Cà Mau', 0, '555888111', 'inactive', 3);
+INSERT INTO users (id, user_name, email, address, season_count, phone_number, status, role_id) VALUES
+  ('64b1a2c3d4e5f67890123456', 'Trần Hải Đăng', 'contact@tdang2202.id.vn', 'Ấp Hòa Sơn, Xã Hòa An, Cần Thơ', 2, '123456789', 'active', 1),
+  ('64b1a2c3d4e5f67890123457', 'Nguyễn Thanh Ngân', 'nganb2203569@student.ctu.edu.vn', 'Trà Ôn, Vĩnh Long', 5, '987654321', 'active', 2),
+  ('64b1a2c3d4e5f67890123458', 'Nguyễn Thị Anh Thư', 'thub2203xxx@student.ctu.edu.vn', 'An Giang', 0, '555888111', 'inactive', 2),
+  ('64b1a2c3d4e5f67890123459', 'Trương Minh Mẫn', 'quocb22035xx@student.ctu.edu.vn', 'Unknown', 0, '555888111', 'inactive', 3),
+  ('64b1a2c3d4e5f6789012345a', 'Trần Nguyễn Khánh Quốc', 'manb22035xx@student.ctu.edu.vn', 'Cà Mau', 0, '555888111', 'inactive', 3);
 
 
 -- Contacts
 INSERT INTO list_contact (contact_content, user_id) VALUES
-  ('alice_phone_1', 1),
-  ('alice_email_2', 1),
-  ('bob_whatsapp', 2);
+  ('alice_phone_1', '64b1a2c3d4e5f67890123456'),
+  ('alice_email_2', '64b1a2c3d4e5f67890123456'),
+  ('bob_whatsapp', '64b1a2c3d4e5f67890123457');
 
 -- Expert list
 INSERT INTO expert_list (user_id) VALUES
-  (2), (3);
+  ('64b1a2c3d4e5f67890123457'),
+  ('64b1a2c3d4e5f67890123458');
 
 -- General field data
 INSERT INTO field_general_data (location, area) VALUES
@@ -29,12 +30,12 @@ INSERT INTO field_general_data (location, area) VALUES
   ('East Field', 10.0);
 
 -- Field profiles
-INSERT INTO field_profile (profile_name, status, start_date, end_date, field_gen_data_id) VALUES
-    ('Vụ Đông - Xuân', 'active', '2024-01-01', '2024-06-01', 1),
-    ('Vụ Hè - Thu', 'completed', '2023-05-01', '2023-09-30', 1),
-    ('Vụ Thu - Đông', 'completed', '2022-09-15', '2023-01-15', 2),
-    ('Vụ Xuân', 'active', '2024-02-01', '2024-05-30', 2),
-    ('Vụ Mùa', 'planned', '2025-07-01', '2025-11-01', 1);
+INSERT INTO field_profile (profile_name, status, start_date, end_date, field_gen_data_id, user_id) VALUES
+    ('Vụ Đông - Xuân', 'active', '2024-01-01', '2024-06-01', 1, '64b1a2c3d4e5f67890123456'),
+    ('Vụ Hè - Thu', 'completed', '2023-05-01', '2023-09-30', 1, '64b1a2c3d4e5f67890123457'),
+    ('Vụ Thu - Đông', 'completed', '2022-09-15', '2023-01-15', 2, '64b1a2c3d4e5f67890123458'),
+    ('Vụ Xuân', 'active', '2024-02-01', '2024-05-30', 2, '64b1a2c3d4e5f67890123459'),
+    ('Vụ Mùa', 'planned', '2025-07-01', '2025-11-01', 1, '64b1a2c3d4e5f6789012345a');
 
 -- Sensor data
 INSERT INTO field_sensor_data (avg_rainfall, pesticide_ton, avg_temp, area, profile_id) VALUES
@@ -132,16 +133,6 @@ INSERT INTO analyzed_result_log (ar_income, ar_log_content, date, session_id) VA
 
 -- Feedback
 INSERT INTO feedback (feedback_content, date, vote, user_id, ar_log_id) VALUES
-  ('Great prediction accuracy!', '2024-06-02 09:00:00', 5, 1, 1),
-  ('Needs improvement on soil health data.', '2023-10-16 11:00:00', 3, 2, 2),
-  ('Soil quality results are very useful.', '2024-07-11 08:50:00', 4, 3, 3),
-  ('Pest detection slightly delayed.', '2024-08-06 09:10:00', 2, 5, 4),
-  ('Excellent nutrient balance insights.', '2024-09-13 07:45:00', 5, 1, 5),
-  ('Yield estimate seems too optimistic.', '2024-10-02 12:00:00', 3, 2, 6),
-  ('Climate forecast helped planning.', '2024-11-23 14:10:00', 4, 3, 7),
-  ('Pest imagery report lacked details.', '2024-12-04 10:20:00', 2, 4, 8),
-  ('Accurate cycle analysis!', '2025-01-16 09:00:00', 5, 5, 9),
-  ('Soil sensor data integration unclear.', '2025-02-10 16:15:00', 3, 2, 10),
-  ('Pest anomaly detection is spot-on.', '2025-03-22 10:05:00', 5, 1, 11),
-  ('Climate comparison report very detailed.', '2025-04-19 08:55:00', 4, 3, 12);
+  ('Great prediction accuracy!', '2024-06-02 09:00:00', 5, '64b1a2c3d4e5f67890123456', 1),
+  ('Needs improvement on soil health data.', '2023-10-16 11:00:00', 3, '64b1a2c3d4e5f67890123457', 2);
 
