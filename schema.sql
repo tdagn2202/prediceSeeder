@@ -56,6 +56,7 @@ CREATE TABLE field_sensor_data (
     avg_temp FLOAT,
     area FLOAT,
     profile_id INT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
 );
 
