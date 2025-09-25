@@ -5,7 +5,7 @@ CREATE TABLE role (
 );
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id CHAR(24) PRIMARY KEY,
     user_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -21,13 +21,13 @@ CREATE TABLE users (
 CREATE TABLE list_contact (
     contact_item_id INT AUTO_INCREMENT PRIMARY KEY,
     contact_content VARCHAR(255),
-    user_id INT,
+    user_id CHAR(24),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE expert_list (
     el_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+    user_id CHAR(24),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -44,11 +44,15 @@ CREATE TABLE field_profile (
     start_date DATETIME,
     end_date DATETIME,
     field_gen_data_id INT,
+    field_sensor_data_id INT,
+    user_id CHAR(24),
     FOREIGN KEY (field_gen_data_id) REFERENCES field_general_data(field_gen_data_id)
+    FOREIGN KEY (field_sensor_data_id) REFERENCES field_sensor_data(field_sensor_data_id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE field_sensor_data (
-    field_data_id INT AUTO_INCREMENT PRIMARY KEY,
+    field_sensor_data_id INT AUTO_INCREMENT PRIMARY KEY,
     avg_rainfall FLOAT,
     pesticide_ton FLOAT,
     avg_temp FLOAT,
@@ -95,9 +99,8 @@ CREATE TABLE feedback (
     feedback_content TEXT,
     date DATETIME,
     vote INT,
-    user_id INT,
+    user_id CHAR(24), -- changed from INT
     ar_log_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (ar_log_id) REFERENCES analyzed_result_log(ar_log_id)
 );
-
