@@ -1,6 +1,6 @@
 {
   "name": "predicedbseeder",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Predice database seeder",
   "main": "seed.js",
   "scripts": {
