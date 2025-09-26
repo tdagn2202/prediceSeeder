@@ -24,18 +24,14 @@ INSERT INTO expert_list (user_id) VALUES
   ('64b1a2c3d4e5f67890123457'),
   ('64b1a2c3d4e5f67890123458');
 
--- General field data
-INSERT INTO field_general_data (location, area) VALUES
-  ('North Field', 5.2),
-  ('East Field', 10.0);
 
 -- Field profiles
-INSERT INTO field_profile (profile_name, status, start_date, end_date, field_gen_data_id, user_id) VALUES
-    ('Vụ Đông - Xuân', 'active', '2024-01-01', '2024-06-01', 1, '64b1a2c3d4e5f67890123456'),
-    ('Vụ Hè - Thu', 'completed', '2023-05-01', '2023-09-30', 1, '64b1a2c3d4e5f67890123457'),
-    ('Vụ Thu - Đông', 'completed', '2022-09-15', '2023-01-15', 2, '64b1a2c3d4e5f67890123458'),
-    ('Vụ Xuân', 'active', '2024-02-01', '2024-05-30', 2, '64b1a2c3d4e5f67890123459'),
-    ('Vụ Mùa', 'planned', '2025-07-01', '2025-11-01', 1, '64b1a2c3d4e5f6789012345a');
+INSERT INTO field_profile (profile_name, status, start_date, end_date, user_id, address, area) VALUES
+    ('Vụ Đông - Xuân', 'active', '2024-01-01', '2024-06-01', '64b1a2c3d4e5f67890123456', 'Ấp Hòa Sơn, Xã Hòa An, Cần Thơ', 5.2),
+    ('Vụ Hè - Thu', 'completed', '2023-05-01', '2023-09-30', '64b1a2c3d4e5f67890123457', 'Trà Ôn, Vĩnh Long', 10.0),
+    ('Vụ Thu - Đông', 'completed', '2022-09-15', '2023-01-15', '64b1a2c3d4e5f67890123458', 'An Giang', 8.5),
+    ('Vụ Xuân', 'active', '2024-02-01', '2024-05-30', '64b1a2c3d4e5f67890123459', 'Unknown', 12.0),
+    ('Vụ Mùa', 'planned', '2025-07-01', '2025-11-01', '64b1a2c3d4e5f6789012345a', 'Cà Mau', 7.5);
 
 -- Sensor data
 INSERT INTO field_sensor_data (avg_rainfall, pesticide_ton, avg_temp, area, profile_id) VALUES
@@ -63,7 +59,10 @@ INSERT INTO field_sensor_data (avg_rainfall, pesticide_ton, avg_temp, area, prof
 -- Images
 INSERT INTO image_bucket (url, profile_id) VALUES
   ('http://example.com/image1.jpg', 1),
-  ('http://example.com/image2.jpg', 2);
+  ('http://example.com/image2.jpg', 2),
+  ('http://example.com/image3.jpg', 3),
+  ('http://example.com/image4.jpg', 4),
+  ('http://example.com/image5.jpg', 5);
 
 -- Prediction session
 INSERT INTO prediction_session (date, model_name, duration, profile_id) VALUES

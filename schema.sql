@@ -31,21 +31,16 @@ CREATE TABLE expert_list (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE field_general_data (
-    field_gen_data_id INT AUTO_INCREMENT PRIMARY KEY,
-    location VARCHAR(255),
-    area FLOAT
-);
-
 CREATE TABLE field_profile (
     profile_id INT AUTO_INCREMENT PRIMARY KEY,
-    profile_name VARCHAR(150),
+    profile_name VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
     status VARCHAR(50),
     start_date DATETIME,
     end_date DATETIME,
     field_gen_data_id INT,
     user_id CHAR(24),
-    FOREIGN KEY (field_gen_data_id) REFERENCES field_general_data(field_gen_data_id),
+    address VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    area FLOAT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
