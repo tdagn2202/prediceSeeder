@@ -1,137 +1,79 @@
--- Roles
-INSERT INTO role (role_title, role_desc) VALUES
-  ('Admin', 'System administrator'),
-  ('Expert', 'Agricultural expert'),
-  ('Farmer', 'Registered farmer');
 
--- Users
-INSERT INTO users (id, user_name, email, address, season_count, phone_number, status, role_id) VALUES
-  ('64b1a2c3d4e5f67890123456', 'Trần Hải Đăng', 'contact@tdang2202.id.vn', 'Ấp Hòa Sơn, Xã Hòa An, Cần Thơ', 2, '123456789', 'active', 1),
-  ('64b1a2c3d4e5f67890123457', 'Nguyễn Thanh Ngân', 'nganb2203569@student.ctu.edu.vn', 'Trà Ôn, Vĩnh Long', 5, '987654321', 'active', 2),
-  ('64b1a2c3d4e5f67890123458', 'Nguyễn Thị Anh Thư', 'thub2203xxx@student.ctu.edu.vn', 'An Giang', 0, '555888111', 'inactive', 2),
-  ('64b1a2c3d4e5f67890123459', 'Trương Minh Mẫn', 'quocb22035xx@student.ctu.edu.vn', 'Unknown', 0, '555888111', 'inactive', 3),
-  ('64b1a2c3d4e5f6789012345a', 'Trần Nguyễn Khánh Quốc', 'manb22035xx@student.ctu.edu.vn', 'Cà Mau', 0, '555888111', 'inactive', 3);
-
-
--- Contacts
-INSERT INTO list_contact (contact_content, user_id) VALUES
-  ('alice_phone_1', '64b1a2c3d4e5f67890123456'),
-  ('alice_email_2', '64b1a2c3d4e5f67890123456'),
-  ('bob_whatsapp', '64b1a2c3d4e5f67890123457');
-
--- Expert list
-INSERT INTO expert_list (user_id) VALUES
-  ('64b1a2c3d4e5f67890123457'),
-  ('64b1a2c3d4e5f67890123458');
+INSERT INTO users (id, user_name, email, created_at, updated_at, address, season_count, phone_number, status, role_id)
+VALUES ('64b1a2c3d4e5f67890123458','Nguyễn Thị Anh Thư','thub2203xxx@student.ctu.edu.vn','2025-10-01 16:14:44','2025-10-01 16:14:44','An Giang',0,'555888111','inactive',2),
+       ('64b1a2c3d4e5f67890123459','Trương Minh Mẫn','quocb22035xx@student.ctu.edu.vn','2025-10-01 16:14:44','2025-10-01 16:14:44','Unknown',0,'555888111','inactive',3),
+       ('64b1a2c3d4e5f6789012345a','Trần Nguyễn Khánh Quốc','manb22035xx@student.ctu.edu.vn','2025-10-01 16:14:44','2025-10-01 16:14:44','Cà Mau',0,'555888111','inactive',3),
+       ('68da7fa20ad21dbd42e36c92','Nguyễn Thanh Ngân','nganb2203569@student.ctu.edu.vn','2025-10-01 16:14:44','2025-10-01 16:14:44','Trà Ôn, Vĩnh Long',5,'987654321','active',2),
+       ('68da229d45a6ac015821312e','Trần Hải Đăng','contactxx@tdang2202.id.vn','2025-10-02 11:17:06','2025-10-02 11:17:06',NULL,0,NULL,NULL,NULL);
 
 
 -- Field profiles
-INSERT INTO field_profile (profile_name, status, start_date, end_date, user_id, address, area) VALUES
-    ('Vụ Đông - Xuân', 'active', '2024-01-01', '2024-06-01', '64b1a2c3d4e5f67890123456', 'Ấp Hòa Sơn, Xã Hòa An, Cần Thơ', 5.2),
-    ('Vụ Hè - Thu', 'completed', '2023-05-01', '2023-09-30', '64b1a2c3d4e5f67890123457', 'Trà Ôn, Vĩnh Long', 10.0),
-    ('Vụ Thu - Đông', 'completed', '2022-09-15', '2023-01-15', '64b1a2c3d4e5f67890123458', 'An Giang', 8.5),
-    ('Vụ Xuân', 'active', '2024-02-01', '2024-05-30', '64b1a2c3d4e5f67890123459', 'Unknown', 12.0),
-    ('Vụ Mùa', 'planned', '2025-07-01', '2025-11-01', '64b1a2c3d4e5f6789012345a', 'Cà Mau', 7.5);
+INSERT INTO field_profile (profile_id, profile_name, status, start_date, end_date, user_id, address, area)
+VALUES (1,'Ruộng Cần Thơ','active','2024-01-01 00:00:00','2024-06-01 00:00:00','68da229d45a6ac015821312e','Cần Thơ Test, , Cần Thơ',100),
+       (2,'Ruộng thử nghiệm PR02','completed','2024-05-10 00:00:00','2024-08-25 00:00:00','68da7fa20ad21dbd42e36c92','Trà Ôn, Vĩnh Long',10),
+       (3,'Ruộng thử nghiệm PR03','completed','2025-02-15 00:00:00','2025-05-30 00:00:00','68da7fa20ad21dbd42e36c92','An Giang',8.5),
+       (4,'Ruộng thử nghiệm PR04','active','2025-07-05 00:00:00','2025-10-25 00:00:00','68da7fa20ad21dbd42e36c92','Unknown',12),
+       (35,'Ruộng Vĩnh Long','active','2025-02-20 00:00:00','2025-10-23 00:00:00','68da229d45a6ac015821312e','Detail Addreess, Phường 1, Thành phố Vĩnh Long, Vĩnh Long, , Vĩnh Long',100),
+       (36,'Ruộng PR02','active','2025-10-02 00:00:00','2025-10-31 00:00:00','64b1a2c3d4e5f6789012345a','ADĐ, Xã Long An, Huyện Long Hồ, Vĩnh Long',NULL),
+       (37,'Ruộng Cà Mau','active','2025-10-09 00:00:00','2025-12-24 00:00:00','68da229d45a6ac015821312e','Detail Addreess, Phường 1, Thành phố Vĩnh Long, Vĩnh Long, , Cà Mau',100),
+       (40,'Ruong test a','active','2025-10-09 00:00:00','2025-10-23 00:00:00','64b1a2c3d4e5f67890123458','ADĐ, Phường An Thới, Quận Bình Thủy, Cần Thơ',NULL),
+       (41,'Ruộng Hải Đăng 111','active','2025-10-10 00:00:00','2025-10-31 00:00:00','68da7fa20ad21dbd42e36c92','ADĐ, Phường Bình Tuỷ, Quận Bình Thủy, Cần Thơ',NULL),
+       (42,'Ruong test a','active','2025-07-01 00:00:00','2025-10-25 00:00:00','68da7fa20ad21dbd42e36c92','ADĐ, Phường 2, Thành phố Vĩnh Long, Vĩnh Long',NULL),
+       (44,'Ruộng Hậu Giang','active','2025-10-27 00:00:00','2025-10-30 00:00:00','68da229d45a6ac015821312e','Ấp Hòa Sơn, xã Hòa An, Hậu Giang',57);
+
 
 -- Sensor data
-INSERT INTO field_sensor_data (avg_rainfall, pesticide_ton, avg_temp, area, profile_id) VALUES
-    (120.5, 1.2, 28.3, 5.2, 1),
-    (80.0, 0.8, 26.1, 10.0, 2),
-    (95.3, 1.0, 27.5, 7.5, 3),
-    (110.0, 1.5, 29.2, 6.0, 4),
-    (130.7, 1.8, 30.1, 8.0, 5),
-    (75.2, 0.6, 25.8, 9.0, 1),
-    (140.0, 2.0, 31.0, 6.8, 2),
-    (90.5, 0.9, 27.0, 7.2, 3),
-    (100.3, 1.3, 28.5, 5.5, 4),
-    (85.0, 0.7, 26.8, 10.5, 5),
-    (115.5, 1.6, 29.7, 8.3, 1),
-    (105.0, 1.2, 28.9, 7.7, 2),
-    (125.8, 1.9, 30.5, 6.4, 3),
-    (70.0, 0.5, 25.5, 9.8, 4),
-    (135.0, 2.1, 31.5, 5.9, 5),
-    (82.3, 0.8, 26.4, 8.1, 1),
-    (98.7, 1.1, 27.9, 7.0, 2),
-    (118.2, 1.7, 29.9, 6.7, 3),
-    (145.0, 2.3, 32.0, 5.4, 4),
-    (92.5, 1.0, 27.2, 9.3, 5);
+INSERT INTO field_sensor_data (field_sensor_data_id, avg_rainfall, avg_temp, soil_moisture, soil_temp, soil_ph, air_moisture, solar_mj_m2_day, wind_speed, year, season, province, profile_id, timestamp, session_id)
+VALUES (13,230.549,26.3173,0.377424,27.3438,57.3723,80.2295,17.6394,2.11978,2017,'dong xuan','Hau Giang',44,NULL,NULL),
+       (14,104.705,27.7728,0.253779,29.798,57.3723,69.9341,20.5577,2.61166,2016,'dong xuan','Hau Giang',44,NULL,NULL),
+       (15,985.305,27.5108,0.423972,29.0552,57.3723,83.8436,16.7439,2.35112,2016,'he thu','Hau Giang',44,NULL,NULL),
+       (16,91.7973,27.692,0.208677,29.4948,58.3076,71.0488,20.8241,2.4348,2016,'dong xuan','Vinh Long',35,NULL,NULL),
+       (17,856.04,27.5237,0.392306,28.8342,58.3076,84.3897,17.2542,2.2829,2016,'he thu','Vinh Long',35,NULL,NULL),
+       (18,86.8559,28.4065,0.212812,30.6516,55.6946,65.3464,20.7779,1.87026,2016,'dong xuan','An Giang',1,NULL,NULL),
+       (19,725.601,27.8892,0.394784,29.5988,55.6946,81.7663,17.5812,2.53133,2016,'he thu','An Giang',1,NULL,NULL),
+       (20,942.49,26.5046,0.432791,27.8828,55.6946,86.1466,14.3219,1.87881,2016,'thu dong','An Giang',1,NULL,NULL),
+       (21,83.4616,27.4819,0.227571,29.4941,58.8965,73.3946,20.5533,3.54443,2016,'dong xuan','Soc Trang',1,NULL,NULL),
+       (22,922.807,27.6654,0.404853,29.2119,58.8965,83.4339,17.4352,2.67959,2016,'he thu','Soc Trang',1,NULL,NULL),
+       (23,985.095,26.3525,0.437948,27.4153,58.8965,87.7311,13.9116,2.64547,2016,'thu dong','Soc Trang',1,NULL,NULL),
+       (24,82.393,27.4161,0.181944,29.2531,58.6357,74.0078,19.5536,3.16889,2016,'dong xuan','Ben Tre',1,NULL,NULL),
+       (25,753.91,27.6557,0.377597,28.9715,58.6357,84.2855,18.4741,2.47579,2016,'he thu','Ben Tre',1,NULL,NULL),
+       (26,964.825,26.4008,0.417558,27.3333,58.6357,88.8699,14.1045,2.20039,2016,'thu dong','Ben Tre',1,NULL,NULL),
+       (27,177.524,26.4923,0.307344,27.5319,58.6357,80.7868,17.1909,2.61031,2017,'dong xuan','Ben Tre',1,NULL,NULL),
+       (28,1011.53,27.8065,0.432593,29.6499,58.0493,83.4613,17.7256,2.90438,2016,'he thu','Ca Mau',37,NULL,NULL),
+       (29,1022.4,26.4203,0.457657,27.6448,58.0493,87.5812,12.3817,3.04919,2016,'thu dong','Ca Mau',37,NULL,NULL),
+       (30,253.202,26.575,0.381765,28.0179,58.0493,80.1212,15.6469,3.05467,2017,'dong xuan','Ca Mau',37,NULL,NULL),
+       (31,84.4772,27.9367,0.220749,29.9581,54.4115,68.5726,20.6428,2.22724,2016,'dong xuan','Can Tho',1,NULL,NULL),
+       (32,830.193,27.6466,0.401117,29.1941,54.4115,83.1451,16.9187,2.46054,2016,'he thu','Can Tho',1,NULL,NULL),
+       (33,226.054,26.3066,0.355586,27.2902,54.4115,80.6906,17.9454,1.8037,2017,'dong xuan','Can Tho',1,NULL,NULL),
+       (34,119.18,27.6966,0.238063,29.9082,58.3408,72.3609,20.4567,3.61564,2016,'dong xuan','Bac Lieu',1,NULL,NULL),
+       (35,1033.07,27.7453,0.417719,29.4909,58.3408,83.0901,17.1598,2.76294,2016,'he thu','Bac Lieu',1,NULL,NULL),
+       (36,1026.18,26.3911,0.447388,27.5666,58.3408,87.2352,13.7335,2.80626,2016,'thu dong','Bac Lieu',1,NULL,NULL),
+       (37,221.006,26.5345,0.36533,27.8487,58.3408,79.5044,17.5491,3.03178,2017,'dong xuan','Bac Lieu',1,NULL,NULL);
+
 
 -- Images
-INSERT INTO image_bucket (url, profile_id) VALUES
-  ('http://example.com/image1.jpg', 1),
-  ('http://example.com/image2.jpg', 2),
-  ('http://example.com/image3.jpg', 3),
-  ('http://example.com/image4.jpg', 4),
-  ('http://example.com/image5.jpg', 5);
+INSERT INTO image_bucket (img_id, url, profile_id)
+VALUES (7,'https://res.cloudinary.com/dndkucyhf/image/upload/v1759382285/Predice/ro180ot84ie634kebnco.jpg',35),
+       (8,'https://res.cloudinary.com/dndkucyhf/image/upload/v1759382354/Predice/a0q0gogefmrhafca51re.jpg',36),
+       (13,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760025625/Predice/twu57uvsjcfe5r3peh9c.jpg',37),
+       (14,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760025627/Predice/wxcqtqae0sofstilw4ew.jpg',37),
+       (15,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760025628/Predice/qlzlzhxedxq4thkiausi.jpg',37),
+       (16,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760071949/Predice/pbap42oebckxatapkebi.jpg',40),
+       (19,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760112981/Predice/s0lb7txqy08gp5npyejl.jpg',42),
+       (20,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760112982/Predice/qjuonp28mcwintcuwddd.jpg',42),
+       (21,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760112983/Predice/kiqljlex6flqjr9dlpzt.jpg',42),
+       (22,'https://res.cloudinary.com/dndkucyhf/image/upload/v1760283116/Predice/v31rpmkbgzy9ab46uqzi.jpg',1),
+       (39,'https://res.cloudinary.com/dndkucyhf/image/upload/v1761469843/Predice/zcenuzvnjbhjd1fsianp.jpg',1),
+       (40,'https://res.cloudinary.com/dndkucyhf/image/upload/v1761473180/Predice/rrtylcrogizcbbpevmaa.jpg',1),
+       (45,'https://mjnmcnijbjrzhrutvlfd.supabase.co/storage/v1/object/public/predice_files/Predice/Sentinel2_Multispectral_0.tif',35),
+       (46,'https://res.cloudinary.com/dndkucyhf/image/upload/v1761581674/Predice/c2iyykmjs4fgft2l3srx.jpg',44),
+       (50,'https://mjnmcnijbjrzhrutvlfd.supabase.co/storage/v1/object/public/predice_files/Predice/Sentinel2_Multispectral_0.tif',1),
+       (51,'https://mjnmcnijbjrzhrutvlfd.supabase.co/storage/v1/object/public/predice_files/Predice/Sentinel2_Multispectral_1.tif',35);
 
 -- Prediction session
-INSERT INTO prediction_session (date, model_name, duration, profile_id) VALUES
-  ('2024-06-01 10:00:00', 'YieldPredictV1', 45, 1),
-  ('2023-10-15 15:30:00', 'SoilHealthAI', 30, 2),
-  ('2024-07-10 08:15:00', 'YieldPredictV1', 40, 1),
-  ('2024-08-05 14:20:00', 'PestDetectAI', 25, 2),
-  ('2024-09-12 09:45:00', 'SoilHealthAI', 35, 1),
-  ('2024-10-01 16:10:00', 'YieldPredictV2', 50, 2),
-  ('2024-11-22 11:30:00', 'ClimateImpactAI', 20, 1),
-  ('2024-12-03 07:50:00', 'PestDetectAI', 30, 2),
-  ('2025-01-15 13:00:00', 'YieldPredictV1', 55, 1),
-  ('2025-02-09 10:25:00', 'SoilHealthAI', 40, 2),
-  ('2025-03-21 15:40:00', 'PestDetectAI', 28, 1),
-  ('2025-04-18 08:05:00', 'ClimateImpactAI', 33, 2),
-  ('2025-05-06 12:45:00', 'YieldPredictV2', 47, 1),
-  ('2025-06-19 09:20:00', 'SoilHealthAI', 36, 2),
-  ('2025-07-25 14:55:00', 'YieldPredictV1', 42, 1),
-  ('2025-08-30 11:10:00', 'PestDetectAI', 27, 2),
-  ('2025-09-14 16:35:00', 'ClimateImpactAI', 31, 1),
-  ('2025-10-28 07:40:00', 'SoilHealthAI', 39, 2),
-  ('2025-11-11 13:15:00', 'YieldPredictV2', 52, 1),
-  ('2025-12-20 10:50:00', 'PestDetectAI', 26, 2),
-  ('2026-01-08 15:05:00', 'ClimateImpactAI', 34, 1),
-  ('2026-02-17 09:30:00', 'YieldPredictV1', 46, 2);
-
+INSERT INTO prediction_session (session_id, date, session_name, model_name, duration, profile_id)
+VALUES (135,'2025-10-28 04:21:09','Session 01','rice-yield-model-v1',NULL,1),
+       (136,'2025-10-28 07:28:08','Session 02','rice-yield-model-v1',NULL,35);
 -- Original result log
-INSERT INTO original_result_log (or_log_content, date, session_id) VALUES
-  ('Original analysis log for session 1', '2024-06-01 10:10:00', 1),
-  ('Raw results for session 2', '2023-10-15 15:40:00', 2),
-  ('Original soil quality data collected', '2024-07-10 08:25:00', 3),
-  ('Initial pest detection scan', '2024-08-05 14:30:00', 4),
-  ('Nutrient baseline report', '2024-09-12 09:55:00', 5),
-  ('Yield estimate calculations', '2024-10-01 16:20:00', 6),
-  ('Climate forecast integration', '2024-11-22 11:40:00', 7),
-  ('Raw pest imagery collected', '2024-12-03 08:00:00', 8),
-  ('Session log: YieldPredict run', '2025-01-15 13:10:00', 9),
-  ('Soil sensor sync complete', '2025-02-09 10:35:00', 10),
-  ('Early pest anomaly detected', '2025-03-21 15:50:00', 11),
-  ('Climate model raw import', '2025-04-18 08:15:00', 12),
-  ('Yield V2 prediction cycle log', '2025-05-06 12:55:00', 13),
-  ('Raw nitrogen balance analysis', '2025-06-19 09:30:00', 14),
-  ('Yield metrics collected', '2025-07-25 15:05:00', 15),
-  ('Raw pest monitoring batch', '2025-08-30 11:20:00', 16),
-  ('Original climate anomaly report', '2025-09-14 16:45:00', 17),
-  ('Soil sample sync log', '2025-10-28 07:50:00', 18),
-  ('Yield V2 preliminary results', '2025-11-11 13:25:00', 19),
-  ('Raw pest field report', '2025-12-20 11:00:00', 20),
-  ('Climate dataset import', '2026-01-08 15:15:00', 21),
-  ('Yield baseline analysis', '2026-02-17 09:40:00', 22);
-  
 
--- Analyzed Result Log
-INSERT INTO analyzed_result_log (ar_income, ar_log_content, date, session_id) VALUES
-  (5000.00, 'Analyzed income prediction', '2024-06-01 10:15:00', 1),
-  (3000.00, 'Yield forecast complete', '2023-10-15 15:45:00', 2),
-  (4200.50, 'Soil quality analysis refined', '2024-07-10 08:40:00', 3),
-  (3800.75, 'Pest detection finalized', '2024-08-05 14:45:00', 4),
-  (6100.20, 'Nutrient optimization results', '2024-09-12 10:10:00', 5),
-  (7000.00, 'Final yield estimation generated', '2024-10-01 16:35:00', 6),
-  (5600.30, 'Climate forecast impact calculated', '2024-11-22 11:55:00', 7),
-  (2900.40, 'Pest imagery analysis completed', '2024-12-03 08:20:00', 8),
-  (6800.00, 'YieldPredict cycle analyzed', '2025-01-15 13:25:00', 9),
-  (3100.10, 'Soil sensor fusion complete', '2025-02-09 10:50:00', 10),
-  (4500.75, 'Pest anomaly analysis delivered', '2025-03-21 16:05:00', 11),
-  (7200.25, 'Climate model comparison done', '2025-04-18 08:30:00', 12);
-
--- Feedback
-INSERT INTO feedback (feedback_content, date, vote, user_id, ar_log_id) VALUES
-  ('Great prediction accuracy!', '2024-06-02 09:00:00', 5, '64b1a2c3d4e5f67890123456', 1),
-  ('Needs improvement on soil health data.', '2023-10-16 11:00:00', 3, '64b1a2c3d4e5f67890123457', 2);
 

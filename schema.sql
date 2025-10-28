@@ -1,100 +1,92 @@
-CREATE TABLE role (
-    role_id INT AUTO_INCREMENT PRIMARY KEY,
-    role_title VARCHAR(100) NOT NULL,
-    role_desc TEXT
-);
-
 CREATE TABLE users (
-    id CHAR(24) PRIMARY KEY, -- MongoDB ObjectId
+    id CHAR(24) PRIMARY KEY, 
     user_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     address VARCHAR(255),
     season_count INT DEFAULT 0,
     phone_number VARCHAR(20),
     status VARCHAR(50),
-    role_id INT,
-    FOREIGN KEY (role_id) REFERENCES role(role_id)
-);
+    role_id INT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE list_contact (
-    contact_item_id INT AUTO_INCREMENT PRIMARY KEY,
-    contact_content VARCHAR(255),
-    user_id CHAR(24),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
 
-CREATE TABLE expert_list (
-    el_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id CHAR(24),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
+-- Field profile first
 CREATE TABLE field_profile (
     profile_id INT AUTO_INCREMENT PRIMARY KEY,
     profile_name VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
     status VARCHAR(50),
     start_date DATETIME,
     end_date DATETIME,
-    field_gen_data_id INT,
     user_id CHAR(24),
     address VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
     area FLOAT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+    CONSTRAINT fk_fieldprofile_user FOREIGN KEY (user_id) REFERENCES users(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE prediction_session (
+    session_id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATETIME,
+    session_name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    model_name VARCHAR(100),
+    duration INT,
+    profile_id INT,
+    CONSTRAINT fk_session_profile FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE field_sensor_data (
-    field_sensor_data_id INT AUTO_INCREMENT PRIMARY KEY,
-    avg_rainfall FLOAT,
-    pesticide_ton FLOAT,
-    avg_temp FLOAT,
-    area FLOAT,
-    profile_id INT,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
-);
+    `field_sensor_data_id` int NOT NULL AUTO_INCREMENT,
+  `avg_rainfall` float DEFAULT NULL,
+  `avg_temp` float DEFAULT NULL,
+  `soil_moisture` float DEFAULT NULL,
+  `soil_temp` float DEFAULT NULL,
+  `soil_ph` float DEFAULT NULL,
+  `air_moisture` float DEFAULT NULL,
+  `solar_mj_m2_day` float DEFAULT NULL,
+  `wind_speed` float DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  `season` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_id` int DEFAULT NULL,
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `session_id` int DEFAULT NULL,
+PRIMARY KEY (`field_sensor_data_id`),
+  KEY `fk_sensor_profile` (`profile_id`),
+  KEY `FK_sensor_predict` (`session_id`),
+  CONSTRAINT `FK_sensor_predict` FOREIGN KEY (`session_id`) REFERENCES `prediction_session` (`session_id`),
+  CONSTRAINT `fk_sensor_profile` FOREIGN KEY (`profile_id`) REFERENCES `field_profile` (`profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE image_bucket (
     img_id INT AUTO_INCREMENT PRIMARY KEY,
     url VARCHAR(255),
     profile_id INT,
-    FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
-);
+    CONSTRAINT fk_image_profile FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE prediction_session (
-    session_id INT AUTO_INCREMENT PRIMARY KEY,
-    date DATETIME,
-    model_name VARCHAR(100),
-    duration INT,
-    profile_id INT,
-    FOREIGN KEY (profile_id) REFERENCES field_profile(profile_id)
-);
 
-CREATE TABLE original_result_log (
-    or_log_id INT AUTO_INCREMENT PRIMARY KEY,
-    or_log_content TEXT,
-    date DATETIME,
-    session_id INT,
-    FOREIGN KEY (session_id) REFERENCES prediction_session(session_id)
-);
 
-CREATE TABLE analyzed_result_log (
-    ar_log_id INT AUTO_INCREMENT PRIMARY KEY,
-    ar_income FLOAT,
-    ar_log_content TEXT,
-    date DATETIME,
-    session_id INT,
-    FOREIGN KEY (session_id) REFERENCES prediction_session(session_id)
-);
+CREATE TABLE `original_result_log` (
+  `or_log_id` int NOT NULL AUTO_INCREMENT,
+  `or_yp` float DEFAULT NULL,
+  `avg_rainfall` float DEFAULT NULL,
+  `avg_temp` float DEFAULT NULL,
+  `soil_moisture` float DEFAULT NULL,
+  `soil_temp` float DEFAULT NULL,
+  `ph` float DEFAULT NULL,
+  `air_moisture` float DEFAULT NULL,
+  `solar_radiation` float DEFAULT NULL,
+  `wind_speed` float DEFAULT NULL,
+  `year` int DEFAULT NULL,
+  `season` varchar(255) DEFAULT NULL,
+  `province` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `session_id` int DEFAULT NULL,
+  PRIMARY KEY (`or_log_id`),
+  KEY `fk_orlog_session` (`session_id`),
+  CONSTRAINT `fk_orlog_session` FOREIGN KEY (`session_id`) REFERENCES `prediction_session` (`session_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE feedback (
-    feedback_id INT AUTO_INCREMENT PRIMARY KEY,
-    feedback_content TEXT,
-    date DATETIME,
-    vote INT,
-    user_id CHAR(24),
-    ar_log_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (ar_log_id) REFERENCES analyzed_result_log(ar_log_id)
-);
+
